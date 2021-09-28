@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<meta name = 'viewport' content = 'width = device-width,initial-scale = 1,minimum-scale = 1, maximum-scale = 1, user-scalable = no'/>
+<title>轮播</title>
+<script type="text/javascript" src='http://cdnjs.cloudflare.com/ajax/libs/less.js/3.11.1/less.min.js'></script>
+<link href="css/mui.min.css" rel="stylesheet">
+<!-- <link href="css/award.css" rel="stylesheet" type="text/css"> -->
+<link rel="stylesheet" href="./css/swiper.css">
+<link rel="stylesheet" href="./css/index.css">
+<link rel="stylesheet/less" href='css/demo.less'>
+<script src="./js/swiper.js"> </script>
+<script src="js/jquery.min.js"></script>
+<style type="text/css">
+	body,ul,ol,li,p,h1,h2,h3,h4,h5,h6,form,fieldset,table,td,img,div{margin:0;padding:0;border:0;}
+	body{color:#333; font-family:"Microsoft YaHei"}
+	ul,ol{list-style-type:none;}
+	select,input,img,select{vertical-align:middle;}
+	input{ font-size:12px;}
+	a{ text-decoration:none; color:#000;}
+	a:hover{color:#c00; text-decoration:none;}
+	.clear{clear:both;}
+
+	.banner{display:block;width:95%;margin-left:auto;margin-right:auto;margin-bottom: 20px;}
+	.banner .turnplate{display:block;width:100%;position:relative;}
+	.banner .turnplate canvas.item{width:100%;}
+	.banner .turnplate img.pointer{position:absolute;width:36%;height:40%;left:32%;top:28%;}
+	.more{display: block;width: 100%;position: fixed;top: 0;left: 0;height: 150px;}
+	.cloud{position: fixed;left: 0;top: 70%;width: 150px;}
+	.cloud2{position: fixed;right: 0;top: 32%;width: 50px;}
+	.cloud3{position: fixed;left: 0;top: 30%;width: 100px;}
+	/* @media screen and (max-width: 320px) {
+		.cloud{position: fixed;left: 0;top: 70%;width: 150px;}
+		.cloud2{position: fixed;right: 0;top: 30%;width: 50px;}
+		.cloud3{position: fixed;left: 0;top: 23%;width: 100px;}
+	}
+	@media screen and (min-width: 321px) and (max-width: 375px) {
+		.cloud{position: fixed;left: 0;top: 72%;width: 150px;}
+		.cloud2{position: fixed;right: 0;top: 32%;width: 50px;}
+		.cloud3{position: fixed;left: 0;top: 25%;width: 100px;}
+	}
+	@media screen and (min-width: 376px) {
+		.cloud{position: fixed;left: 0;top: 68%;width: 150px;}
+		.cloud2{position: fixed;right: 0;top: 32%;width: 50px;}
+		.cloud3{position: fixed;left: 0;top: 25%;width: 100px;}
+	}
+	@media screen and (max-height: 480px) {
+		.cloud{position: fixed;left: 0;top: 81%;width: 150px;}
+		.cloud2{position: fixed;right: 0;top: 35%;width: 50px;}
+		.cloud3{position: fixed;left: 0;top: 27%;width: 100px;}
+	} */
+
+	#mark{width: 100%;height: 100%;background: rgba(0,0,0,0.5);position: fixed;top: 0;left: 0;display: none;}
+	.red-img{position: fixed;top: 10%;left: 5%;width: 90%;}
+</style>
+
+</head>
+<body>
+<!-------------轮播页面-------------->
+<div class="ml-main" id="ml-main">
+<!--	<img class="main_back" src="img/back.png">-->
+	<div class="swiper-container">
+		<div class="swiper-wrapper">
+			<div class="swiper-slide">
+			<div class="start_box">
+				<div class="centent_box">
+					<div class="centent_nav" id="centent_nav_time"></div>
+					<div class="centent_my"><span>你,</span> 还记得我？</div>
+					<div class="centent_you">没事, <span>我</span>来带你回忆</div>
+					<div class="centent_img">
+						<img src="./img/pic0002.png" alt="">
+					</div>
+					<div class="centent_button swiper-button-next" id="swiperbutton">立即查看</div>
+				</div>
+			</div>
+			</div>
+			<div class="swiper-slide">
+				<!--1-->
+				<div class="first_box" id="first_box">
+
+				</div>
+			</div>
+			<div class="swiper-slide">
+				<!--2-->
+				<div class="second_box" id="second_box">
+
+				</div>
+			</div>
+			<div class="swiper-slide">
+				<!--3-->
+				<div class="third_box" id="third_box">
+
+				</div>
+			</div>
+			<div class="swiper-slide">
+					<!--4-->
+				<div class="fourth_box" id="fourth_box">
+
+				</div>
+			</div>
+			<div class="swiper-slide">
+				<!--5-->
+				<div class="fifth_box">
+					<div class="centent_box">
+						<div class="fifth_text" id="fifth_text">
+
+						</div>
+					</div>
+				</div>
+			</div>
+				<div class="swiper-slide">
+					<div class="sixth_box" id="sixth_box">
+
+					</div>
+				</div>
+			<div class="swiper-slide">
+				<div class="fifth_box">
+					<div class="centent_box">
+						<div class="fifth_text">
+							<span>感谢您的关注，今后的路还有很长，有你的陪伴真好!</span>
+						</div>
+						<div class="fifth_bottom">
+							<div id="oncemore">再看一遍</div>
+							<div id="my_word">我的页面</div>
+						</div>
+						<div class="fifth_bottom_text" id="fifth_bottom_text"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 如果需要滚动条 -->
+		<div class="swiper-pagination" id="swiper-pagination"></div>
+	</div>
+</div>
+
+<script async>
+	setSize(); window.addEventListener("resize", setSize, false); window.addEventListener("orientationchange", setSize, false); function setSize() { var html = document.getElementsByTagName('html')[0]; var pageWidth = html.getBoundingClientRect().width; html.style.fontSize = pageWidth > 750 ? '75px' : pageWidth / 10 + 'px'; } 
+	var wxcode = ''
+	var mySwiper = new Swiper('.swiper-container', {
+		loop: false, // 循环模式选项
+		allowTouchMove: false,
+		// 如果需要分页器
+		pagination: {
+			el: '.swiper-pagination',
+			clickable:true
+		},
+		// 如果需要前进后退按钮
+		navigation: {
+			nextEl: '.swiper-button-next',
+			prevEl: '.swiper-button-prev',
+		},
+		on: {
+			slideChangeTransitionStart: function(){
+				if(this.activeIndex == 0) {
+					this.allowTouchMove = false
+					$('#swiper-pagination').fadeOut();
+				} else {
+					$('#swiper-pagination').fadeIn();
+					this.allowTouchMove = true
+				}
+			}
+		},
+		// 如果需要滚动条
+		scrollbar: {
+			el: '.swiper-scrollbar',
+		},
+		//设置自动轮播
+		autoplay:false
+	})
+	$("#oncemore").on('click', function () {
+		$('.swiper-pagination span').eq(1).trigger('click');
+	})
+	$("#my_word").on('click', function () {
+		window.location.href = 'https://www.qmwm777.com/app/view/goBack.html'
+	})
+
+			$.ajax({
+				url:'https://api2.qmwm777.com/delegate/dealLog/trace/V1',
+				dataType:"json",
+				async:true,
+				type:"GET",
+				headers: {
+					"Authorization": getUrlCode().token,
+					"Platform": 'pc'
+				},
+				contentType:"application/json;charset=UTF-8",
+				success:function(res){
+					var centent_nav_time = document.getElementById('centent_nav_time')
+					centent_nav_time.innerHTML = "<span> -".concat(res.data.step_0_1, " - </span>");
+					var first_box = document.getElementById('first_box')
+					first_box.innerHTML = "<div class=\"centent_box\">\n<div class=\"first_nav\">-".concat(res.data.step_1_1, "-</div>\n<div class=\"first_text\">\u60A8\u6CE8\u518C\u6210\u4E3A\u5168\u6C11\u5916\u8D38\u5E73\u53F0\u7684\u7528\u6237\uFF0C</div>\n<div class=\"first_text\">\u622A\u6B62\u5230\u4ECA\u65E5\u60A8\u5DF2\u7ECF\u6CE8\u518C").concat(res.data.step_1_2, "\u5929\uFF0C</div>\n<div class=\"first_text\">\u8D85\u8FC7\u5E73\u53F0").concat(res.data.step_1_3, "%\u7684\u4EE3\u8D2D\u7528\u6237\uFF0C</div>\n<div class=\"first_text\">\u975E\u5E38\u611F\u8C22\u60A8\u4E00\u8DEF\u7684\u966A\u4F34\u4E0E\u652F\u6301!</div>\n</div>");
+					var second_box = document.getElementById('second_box')
+					second_box.innerHTML = "<div class=\"centent_box\"><div class=\"second_text\">\u5728\u60A8\u6CE8\u518C\u6210\u4E3A\u5E73\u53F0\u7528\u6237\u7684\u8FD9\u7684".concat(res.data.step_2_1, "\u5929\u91CC\uFF0C\u60A8\u6709").concat(res.data.step_2_2, "\u5929\u90FD\u5728\u53C2\u4E0E\u4EE3\u8D2D\uFF0C\u4E00\u5171\u4EA7\u751F\u4E86").concat(res.data.step_2_3, "\u7B14\u4EE3\u8D2D\u8BA2\u5355</div>\n\t\t\t\t<div class=\"second_text\" style=\"margin-top: 4.6rem\">\u4ECA\u540E\u7684\u65E5\u5B50\u91CC\u613F\u6211\u4EEC\u643A\u624B\u4E00\u9053\uFF0C\u52A9\u529B\u4E2D\u56FD\u5236\u9020\u8D70\u51FA\u56FD\u95E8 !</div>\n\t</div>");
+					var third_box = document.getElementById('third_box')
+					third_box.innerHTML = "<div class=\"centent_box\">\n<div>\n<div class=\"third_div\"><span class=\"third_time\">".concat(res.data.step_3_1, "</span><span class=\"third_text\">\u662F\u5728\u5E73\u53F0\u4EA7\u751F\u7B2C\u4E00\u7B14\u4EE3\u8D2D\u8BA2\u5355\u7684\u65E5\u5B50\uFF0C\u60A8\u8FD8\u8BB0 \u5F97\u5417\uFF1F</span></div>\n</div>\n<div class=\"third_img\"><img src=\"https://static.qmwm777.com").concat(res.data.step_3_2, "\" alt=\"\"></div>\n<div class=\"third_money\">\u4EE3\u8D2D\u91D1\u989D<span>\uFFE5").concat(res.data.step_3_3, "</span></div>\n<div class=\"third_money\">\u4EE3\u8D2D\u5229\u6DA6<span>\uFFE5").concat(res.data.step_3_4, "</span></div>\n</div>");
+					var fourth_box = document.getElementById('fourth_box')
+					fourth_box.innerHTML = "<div class=\"centent_box\">\n<div class=\"fourth_text\">\u60A8\u5728\u5168\u6C11\u5916\u8D38\u5E73\u53F0\u7D2F\u8BA1\u4EE3\u8D2D</div>\n<div class=\"fourth_money\">\uFFE5".concat(res.data.step_4_1, "</div>\n<div class=\"fourth_money\"><span>\u7D2F\u8BA1\u6536\u76CA</span>\uFFE5").concat(res.data.step_4_2, "</div>\n<div class=\"fourth_text\" style=\"margin-top: 4rem;letter-spacing: 3px;\">\u611F\u8C22\u60A8\u5BF9\u4E2D\u56FD\u5236\u9020\u7684\u652F\u6301!</div>\n</div>");
+					var fifth_text = document.getElementById('fifth_text')
+					fifth_text.innerHTML = "<span>\u518D\u548C\u60A8\u5171\u540C\u5EA6\u8FC7\u7684".concat(res.data.step_5_1, "\u5929\u91CC\uFF0C").concat(res.data.step_5_2, "\u662F\u60A8\u4EE3\u8D2D\u91D1\u989D\u6700\u9AD8\u7684\u4E00\u5929\uFF0C\u5F53\u5929\u60A8\u7D2F\u8BA1\u4EE3\u8D2D\u91D1\u989D\u8FBE\u5230\uFFE5").concat(res.data.step_5_3, "\uFF0C\u975E\u5E38\u611F\u8C22\u60A8\u5BF9\u5E73\u53F0\u7684\u4FE1\u4EFB!</span>");
+					var sixth_box = document.getElementById('sixth_box')
+					sixth_box.innerHTML = "\n<div class=\"centent_box\">\n   <div class=\"sixth_text\" style=\"margin-top: 5rem;\">\u5728\u60A8\u6CE8\u518C\u7684\u8FD9".concat(res.data.step_6_1, "\u5929\u91CC\uFF0C</div>\n   <div class=\"sixth_text\">\u60A8\u4EE3\u8D2D\u6700\u591A\u5546\u54C1\u662F").concat(res.data.step_6_2, "\uFF0C</div>\n   <div class=\"sixth_text\">\u5DF2\u7ECF\u7D2F\u8BA1\u4EE3\u8D2D\u4E86").concat(res.data.step_6_3, "\u4EF6\uFF0C</div>\n   <div class=\"sixth_text\">\u548C").concat(res.data.step_6_4, "%\u7684\u4EE3\u8D2D\u7528\u6237\u6709\u7740\u4E00\u6837\u7684\u559C\u597D</div>\n   <div class=\"third_img\"><img src=\"https://static.qmwm777.com").concat(res.data.step_6_5, "\" alt=\"\"></div>\n   <div class=\"third_money\">\u4EE3\u8D2D\u91D1\u989D<span>\uFFE5").concat(res.data.step_6_6, "</span></div>\n   <div class=\"third_money\">\u4EE3\u8D2D\u8BA2\u5355<span>").concat(res.data.step_6_7, "\u7B14</span></div>\n</div>\n\t\t\t\t");
+					var fifth_bottom_text = document.getElementById('fifth_bottom_text')
+					fifth_bottom_text.innerHTML = "<span> 截止".concat(res.data.step_0_1, "</span>");
+				},
+				error:function(){
+					//请求出错处理
+				}
+			});
+
+	// 截取token
+	function getUrlCode() {
+		var url = location.search
+		var theRequest = new Object()
+		if (url.indexOf("?") != -1) {
+			var str = url.substr(1)
+			var strs = str.split("?")
+			for(var i = 0; i < strs.length; i ++) {
+				theRequest[strs[i].split("=")[0]]=(strs[i].split("=")[1])
+			}
+		}
+		return theRequest
+	}
+
+</script>
+
+</body>
+</html>
