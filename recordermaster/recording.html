@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+
+<html dir="ltr" mozdisallowselectionprint moznomarginboxes>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="google" content="notranslate">
+<title></title>
+<link href="../../../assets/mobile/css/mui.min.css" rel="stylesheet" />
+<link href="../../../assets/mobile/css/style.css" rel="stylesheet" />
+<link href="../../../assets/mobile/css/iconfont.css" rel="stylesheet" />
+
+</head>
+<body>
+	<div class="recording">
+			<table class="recordingkl">
+				<tr>
+					<td class="recordingkl01">讲解音频</td>
+					<td class="recordingkl02" style="padding:0 10px;">
+						<audio class="recPlay" style="width:100%"></audio>
+						<div class="recording-list reclog">
+							<audio class="recplay" controls="controls" height="100" width="100">
+							</audio>
+							<span class="icon iconfont icon-shanchu"></span>
+							<div class="voice-list"></div>
+						</div>
+
+					</td>
+				</tr>
+				<tr>
+					<td class="recordingkl01 ">语音录制</td>
+					<td class="recordingkl02" style="text-align: center;">
+
+						<button class="onrecording" onclick="recopen()"><span class="icon iconfont icon-yuyin"></span>开始录音</button>
+
+						<button class="offrecording" onclick="recstop()"><span class="icon iconfont icon-yuyin"></span>结束录音</button>
+
+					</td>
+				</tr>
+			</table>
+			<!-- begin 开始copy源码 -->
+			<div style="display: none;">
+				<div class="pd types">
+					类型:
+					<label><input type="radio" name="type" value="mp3" engine="mp3,mp3-engine" class="initType" checked>mp3</label>
+				</div>
+				<button onclick="recstart()">录制</button>
+				<button onclick="recstop()">停止</button>
+
+				<div>
+					<div class="pd recpower" style="display: none;">
+						<div style="height:40px;width:300px;background:#999;position:relative;">
+							<div class="recpowerx" style="height:40px;background:#0B1;position:absolute;"></div>
+							<div class="recpowert" style="padding-left:50px; line-height:40px; position: relative;"></div>
+						</div>
+					</div>
+
+					<div class="pd">
+						<div style="height:100px;width:300px;border:1px solid #ccc;box-sizing: border-box;display:inline-block" class="recwave"></div>
+						<input type="checkbox" class="recwaveSet" checked>
+					</div>
+
+					<hr>
+
+					<div class="recinfo"></div>
+				</div>
+				<textarea class="Xlog" style="width:300px;height:160px; display: none;"></textarea>
+				<!-- end 结束copy源码 -->
+
+			</div>
+		</div>
+</body>
+<script src="./src/extensions/jquery.js"></script>
+<script src="../../../assets/mobile/js/mui.min.js"></script>
+<!--加载核心库，其他类型支持库在下面根据用户点击选择加载-->
+<script src="./src/recorder-core.js"></script>
+<!--加载可选扩展库-->
+<script src="./src/extensions/waveview.js"></script>
+<script src="recording.js"></script>
+</html>
