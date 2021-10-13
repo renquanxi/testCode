@@ -17,12 +17,12 @@ $(window).bind("error",function(e){
 
 var rec;
 function recopen(){  //打开录音
-	
-	
 	var type=$("[name=type]:checked").val();
 	var bit=+$(".bit").val();
 	var sample=+$(".sample").val();
 	var wave,waveSet=$(".recwaveSet")[0].checked;
+	console.log(Recorder);
+	console.log(window.Recorder);
 	rec=Recorder({
 		type:type
 		,bitRate:bit
@@ -34,21 +34,20 @@ function recopen(){  //打开录音
 			waveSet && wave.input(buffers[buffers.length-1],level,sampleRate);
 		}
 	});
-	rec.open(function(){
-		console.log("已打开:"+type+" "+bit+"kbps");
-		
-		wave=Recorder.WaveView({elem:".recwave"});
-		
-		setTimeout(function(){  //正常打开录音后开始录音
-			recstart();
-		},200)
-		
-	},function(e,isUserNotAllow){
-		console.log((isUserNotAllow?"UserNotAllow，":"")+"打开失败："+e);
-	});
-	
-	
-	
+	rec.open(
+		function(){
+			console.log("已打开:"+type+" "+bit+"kbps");
+			
+			wave=Recorder.WaveView({elem:".recwave"});
+			
+			setTimeout(function(){  //正常打开录音后开始录音
+				recstart();
+			},200)
+		},
+		function(e,isUserNotAllow){
+			console.log((isUserNotAllow?"UserNotAllow，":"")+"打开失败："+e);
+		}
+	);
 };
 function recclose(){  //关闭网页录音功能
 	if(rec){
