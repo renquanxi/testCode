@@ -17,28 +17,33 @@ $(window).bind("error",function(e){
 
 var rec;
 function recopen(){  //打开录音
-	var type=$("[name=type]:checked").val();
-	var bit=+$(".bit").val();
-	var sample=+$(".sample").val();
-	var wave,waveSet=$(".recwaveSet")[0].checked;
+	// var type=$("[name=type]:checked").val();
+	// var bit=+$(".bit").val();
+	// var sample=+$(".sample").val();
+
+	var type = "mp3"; // 类型
+	var bit = 16; // kbps mp3、wav取值8位16位
+	var sample = 16000; // mp3标准值，wav任意
+
+	// var wave,waveSet=$(".recwaveSet")[0].checked;
 	console.log(Recorder);
 	console.log(window.Recorder);
 	rec=Recorder({
-		type:type
-		,bitRate:bit
-		,sampleRate:sample
-		,onProcess:function(buffers,level,time,sampleRate){
+		type:type,
+		bitRate:bit,
+		sampleRate:sample,
+		onProcess:function(buffers,level,time,sampleRate){
 			$(".recpowerx").css("width",level+"%");
 			$(".recpowert").html(time+"/"+level);
 			
-			waveSet && wave.input(buffers[buffers.length-1],level,sampleRate);
+			// waveSet && wave.input(buffers[buffers.length-1],level,sampleRate);
 		}
 	});
 	rec.open(
 		function(){
 			console.log("已打开:"+type+" "+bit+"kbps");
 			
-			wave=Recorder.WaveView({elem:".recwave"});
+			// wave=Recorder.WaveView({elem:".recwave"});
 			
 			setTimeout(function(){  //正常打开录音后开始录音
 				recstart();
@@ -76,21 +81,26 @@ function recresume(){
 };
 var recblob={};
 function recstop(batCall){
+	console.log('batCall:', batCall);
 	debugger;
 	if(rec){
 		if(!batCall){
 			console.log("正在编码"+rec.set.type+"...");
 		};
 		var t1=Date.now();
-		rec.stop(function(blob,time){
+		rec.stop(
+		function(blob,time){
+			console.log('blob:=======', blob);
+			console.log('time:=======', time);
 			console.log('l录制完成')
-			var id=RandomKey(16);
-			recblob[id]={blob:blob,set:$.extend({},rec.set),time:time};
+
+			// var id=RandomKey(16);
+			// recblob[id]={blob:blob,set:$.extend({},rec.set),time:time};
 			
-			reclog("已录制:"+intp(rec.set.bitRate,3)+"kbps "+intp(rec.set.sampleRate,5)+"hz 花"+intp(Date.now()-t1,4)+"ms编码"+intp(blob.size,6)+"b ["+rec.set.type+"]"+intp(time,6)+'ms <button onclick="recdown(\''+id+'\')">下载</button> <button onclick="recplay(\''+id+'\')">播放</button> <span class="p'+id+'"></span> <span class="d'+id+'"></span>');
-			//alert("已录制:"+intp(rec.set.bitRate,3)+"kbps "+intp(rec.set.sampleRate,5)+"hz 花"+intp(Date.now()-t1,4)+"ms编码"+intp(blob.size,6)+"b ["+rec.set.type+"]"+intp(time,6)+'ms <button onclick="recdown(\''+id+'\')">下载</button> <button onclick="recplay(\''+id+'\')">播放</button> <span class="p'+id+'"></span> <span class="d'+id+'"></span>');
-			$('.voice-list').append('ms <button onclick="recplay(\''+id+'\')">播放</button> <span class="p'+id+'"></span> <span class="d'+id+'"></span>')
-			batCall&&batCall();
+			// reclog("已录制:"+intp(rec.set.bitRate,3)+"kbps "+intp(rec.set.sampleRate,5)+"hz 花"+intp(Date.now()-t1,4)+"ms编码"+intp(blob.size,6)+"b ["+rec.set.type+"]"+intp(time,6)+'ms <button onclick="recdown(\''+id+'\')">下载</button> <button onclick="recplay(\''+id+'\')">播放</button> <span class="p'+id+'"></span> <span class="d'+id+'"></span>');
+			// //alert("已录制:"+intp(rec.set.bitRate,3)+"kbps "+intp(rec.set.sampleRate,5)+"hz 花"+intp(Date.now()-t1,4)+"ms编码"+intp(blob.size,6)+"b ["+rec.set.type+"]"+intp(time,6)+'ms <button onclick="recdown(\''+id+'\')">下载</button> <button onclick="recplay(\''+id+'\')">播放</button> <span class="p'+id+'"></span> <span class="d'+id+'"></span>');
+			// $('.voice-list').append('ms <button onclick="recplay(\''+id+'\')">播放</button> <span class="p'+id+'"></span> <span class="d'+id+'"></span>')
+			// batCall&&batCall();
 		},function(s){
 			console.log("失败："+s);
 			batCall&&batCall();
