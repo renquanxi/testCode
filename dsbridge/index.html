@@ -30,6 +30,8 @@
 
 </style>
 <body>
+<div class="btn" onclick="start()">开始录音</div>
+<div class="btn" onclick="stop()">结束录音</div>
 <div class="btn" onclick="callSyn()">Synchronous call</div>
 <div class="btn" onclick="callAsyn()">Asynchronous call</div>
 <div class="btn" onclick="callNoArgSyn()">Sync call without argument</div>
@@ -44,12 +46,25 @@
 <div class="btn" onclick="hasNativeMethod('xx')">hasNativeMethod("xx")</div>
 <div class="btn" onclick="hasNativeMethod('testSyn')">hasNativeMethod("testSyn")</div>
 
+
 <script>
     var vConsole = new VConsole();
     console.log('Hello world');
 </script>
 <script>
 
+    function start() {
+        dsBridge.call('stsrtRecord', res　=> {
+            log('开始录音了')
+            console.log(res);
+        })
+    }
+    function stop() {
+        dsBridge.call('stopRecord', res　=> {
+            log('结束录音了')
+            console.log(res);
+        })
+    }
     function callSyn() {
         alert(dsBridge.call("testSyn", "testSyn"))
     }
@@ -81,7 +96,10 @@
     }
 
     function callNever() {
-        alert(dsBridge.call("testNever", {msg: "testSyn"}))
+        // alert(dsBridge.call("testNever", {msg: "testSyn"}))
+        dsBridge.call('getRecord', res　=> {
+            console.log(res);
+        })
     }
 
     function echoSyn() {
