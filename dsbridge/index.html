@@ -30,8 +30,8 @@
 
 </style>
 <body>
-<div class="btn" onclick="start()">开始录音</div>
-<div class="btn" onclick="stop()">结束录音</div>
+<div class="btn" onclick="start()">开始录音1</div>
+<div class="btn" onclick="stop()">结束录音2</div>
 <div class="btn" onclick="callSyn()">Synchronous call</div>
 <div class="btn" onclick="callAsyn()">Asynchronous call</div>
 <div class="btn" onclick="callNoArgSyn()">Sync call without argument</div>
@@ -54,14 +54,16 @@
 <script>
 
     function start() {
+        console.log(1);
         dsBridge.call('stsrtRecord', res　=> {
-            log('开始录音了')
+            console.log('开始录音了')
             console.log(res);
         })
     }
     function stop() {
+        console.log(12);
         dsBridge.call('stopRecord', res　=> {
-            log('结束录音了')
+            console.log('结束录音了')
             console.log(res);
         })
     }
