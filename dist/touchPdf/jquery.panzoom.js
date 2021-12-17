@@ -689,8 +689,6 @@
 		 *  For instance, to flip vertically, you could set -1 as the dValue.
 		 */
 		zoom: function(scale, opts) {
-			console.log(123);
-			
 			// Shuffle arguments
 			if (typeof scale === 'object') {
 				opts = scale;
@@ -938,8 +936,6 @@
 			if (!options.disablePan || !options.disableZoom) {
 				events[ str_start ] = function(e) {
 					var touches;
-					console.log(e);
-					console.log(e.type);
 					if (e.type === 'touchstart' ?
 						// Touch						
 						(touches = e.touches) &&
@@ -1139,23 +1135,16 @@
 
 			// Trigger start event
 			this._trigger('start', event, touches);
-			console.log('wocao');
-			// console.log(touches);
-			// console.log(touches.length === 2);
-			// console.log('wocao end');
-			
 			if (istouch && touches && touches.length === 2) {
 				startDistance = this._getDistance(touches);
 				startScale = +matrix[0];
 				startMiddle = this._getMiddle(touches);
-				console.log(789);
 				move = function(e) {
 					e.preventDefault();
 
 					// Calculate move on middle point
 					var middle = self._getMiddle(touches = e.touches);
 					var diff = self._getDistance(touches) - startDistance;
-					console.log(456);
 					// Set zoom
 					self.zoom(diff * (options.increment / 100) + startScale, {
 						focal: middle,
