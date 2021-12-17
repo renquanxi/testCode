@@ -917,8 +917,6 @@
 			var self = this;
 			var options = this.options;
 			var ns = options.eventNamespace;
-			console.log(ns);
-			console.log(pointerEvents);
 			var str_start = pointerEvents ? 'pointerdown' + ns : ('touchstart' + ns + ' mousedown' + ns);
 			var str_click = pointerEvents ? 'pointerup' + ns : ('touchend' + ns + ' click' + ns);
 			var events = {};
