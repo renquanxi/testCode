@@ -448,7 +448,6 @@
 						if (state != LOADED) return;
 						linksDisabled = true;
 						setTimeout(function() {linksDisabled = false;}, 1);
-						console.log(cat.touchjs.scaleVal);
 						if(cat.touchjs.scaleVal<=1){
 							if (direction == "right") goto(pageNum-1);
 							else if (direction == "left") goto(pageNum+1);
