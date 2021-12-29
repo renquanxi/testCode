@@ -21,7 +21,6 @@ cat.touchjs = {
             cat.touchjs.left = parseFloat(jsonObj.left), cat.touchjs.top = parseFloat(jsonObj.top), cat.touchjs.scaleVal = parseFloat(jsonObj.scale), cat.touchjs.rotateVal = parseFloat(jsonObj.rotate);
             callback(cat.touchjs.left, cat.touchjs.top, cat.touchjs.scaleVal, cat.touchjs.rotateVal);
         }
-        console.log('left',$targetObj.css.left);
     },
     //拖动
     drag: function ($targetObj, callback) {
@@ -43,41 +42,25 @@ cat.touchjs = {
         var initialScale = cat.touchjs.scaleVal || 1;
         var currentScale;
         touch.on($targetObj, 'pinch', function (ev) {
-            if(cat.touchjs.scaleVal >= 1) {
-                if(cat.touchjs.scaleVal < 1) {
-                    cat.touchjs.scaleVal = 1;
-                    return
-                }
-                if (cat.touchjs.curStatus == 2) {
-                    return;
-                }
-                cat.touchjs.curStatus = 1;
-                currentScale = ev.scale - 1;
-                currentScale = initialScale + currentScale;
-                cat.touchjs.scaleVal = currentScale;
-                var transformStyle = 'scale(' + cat.touchjs.scaleVal + ') rotate(' + cat.touchjs.rotateVal + 'deg)';
-                $targetObj.css("transform", transformStyle).css("-webkit-transform", transformStyle);
-                callback(cat.touchjs.scaleVal);
-            } else {
-                cat.touchjs.scaleVal = 1;
+            if (cat.touchjs.curStatus == 2) {
+                return;
             }
+            cat.touchjs.curStatus = 1;
+            currentScale = ev.scale - 1;
+            currentScale = initialScale + currentScale;
+            cat.touchjs.scaleVal = currentScale;
+            var transformStyle = 'scale(' + cat.touchjs.scaleVal + ') rotate(' + cat.touchjs.rotateVal + 'deg)';
+            $targetObj.css("transform", transformStyle).css("-webkit-transform", transformStyle);
+            callback(cat.touchjs.scaleVal);
         });
 
         touch.on($targetObj, 'pinchend', function (ev) {
-            if(cat.touchjs.scaleVal >= 1) {
-                if(cat.touchjs.scaleVal < 1) {
-                    cat.touchjs.scaleVal = 1;
-                    return
-                }
-                if (cat.touchjs.curStatus == 2) {
-                    return;
-                }
-                initialScale = currentScale;
-                cat.touchjs.scaleVal = currentScale;
-                callback(cat.touchjs.scaleVal);
-            } else {
-                cat.touchjs.scaleVal = 1;
+            if (cat.touchjs.curStatus == 2) {
+                return;
             }
+            initialScale = currentScale;
+            cat.touchjs.scaleVal = currentScale;
+            callback(cat.touchjs.scaleVal);
         });
     },
     //旋转
