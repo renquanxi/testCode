@@ -14,11 +14,20 @@ cat.touchjs = {
             cat.touchjs.curStatus = 0;
             ev.preventDefault();//阻止默认事件
         });
-        if (!window.localStorage.cat_touchjs_data)
+        if (!window.localStorage.cat_touchjs_data){
+            console.log('if');
             callback(0, 0, 1, 0);
-        else {
+        } else {
+            console.log('else');
             var jsonObj = JSON.parse(window.localStorage.cat_touchjs_data);
-            cat.touchjs.left = parseFloat(jsonObj.left), cat.touchjs.top = parseFloat(jsonObj.top), cat.touchjs.scaleVal = parseFloat(jsonObj.scale), cat.touchjs.rotateVal = parseFloat(jsonObj.rotate);
+            cat.touchjs.left = parseFloat(jsonObj.left), 
+            cat.touchjs.top = parseFloat(jsonObj.top),
+            cat.touchjs.scaleVal = parseFloat(jsonObj.scale),
+            cat.touchjs.rotateVal = parseFloat(jsonObj.rotate);
+            cat.touchjs.top = 0;
+            cat.touchjs.left = 0;
+            console.log('initLift', cat.touchjs.left);
+            console.log('initTop:', cat.touchjs.top);
             callback(cat.touchjs.left, cat.touchjs.top, cat.touchjs.scaleVal, cat.touchjs.rotateVal);
         }
     },
