@@ -25,12 +25,16 @@ cat.touchjs = {
     //拖动
     drag: function ($targetObj, callback) {
         touch.on($targetObj, 'drag', function (ev) {
-            $targetObj.css("left", cat.touchjs.left + ev.x).css("top", cat.touchjs.top + ev.y);
+            if(cat.touchjs.scaleVal > 1) {
+                $targetObj.css("left", cat.touchjs.left + ev.x).css("top", cat.touchjs.top + ev.y);
+            }
         });
         touch.on($targetObj, 'dragend', function (ev) {
-            cat.touchjs.left = cat.touchjs.left + ev.x;
-            cat.touchjs.top = cat.touchjs.top + ev.y;
-            callback(cat.touchjs.left, cat.touchjs.top);
+            if(cat.touchjs.scaleVal > 1) {
+                cat.touchjs.left = cat.touchjs.left + ev.x;
+                cat.touchjs.top = cat.touchjs.top + ev.y;
+                callback(cat.touchjs.left, cat.touchjs.top);
+            }
         });
     },
     //缩放
