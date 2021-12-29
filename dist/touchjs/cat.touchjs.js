@@ -44,6 +44,10 @@ cat.touchjs = {
         var currentScale;
         touch.on($targetObj, 'pinch', function (ev) {
             if(cat.touchjs.scaleVal >= 1) {
+                if(cat.touchjs.scaleVal < 1) {
+                    cat.touchjs.scaleVal = 1;
+                    return
+                }
                 if (cat.touchjs.curStatus == 2) {
                     return;
                 }
@@ -54,17 +58,25 @@ cat.touchjs = {
                 var transformStyle = 'scale(' + cat.touchjs.scaleVal + ') rotate(' + cat.touchjs.rotateVal + 'deg)';
                 $targetObj.css("transform", transformStyle).css("-webkit-transform", transformStyle);
                 callback(cat.touchjs.scaleVal);
+            } else {
+                cat.touchjs.scaleVal = 1;
             }
         });
 
         touch.on($targetObj, 'pinchend', function (ev) {
             if(cat.touchjs.scaleVal >= 1) {
+                if(cat.touchjs.scaleVal < 1) {
+                    cat.touchjs.scaleVal = 1;
+                    return
+                }
                 if (cat.touchjs.curStatus == 2) {
                     return;
                 }
                 initialScale = currentScale;
                 cat.touchjs.scaleVal = currentScale;
                 callback(cat.touchjs.scaleVal);
+            } else {
+                cat.touchjs.scaleVal = 1;
             }
         });
     },
