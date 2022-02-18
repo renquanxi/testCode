@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <!-- import CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+</head>
+<body>
+  <div id="app">
+    <el-checkbox-group v-model="checkList" class="search">
+      <el-checkbox label="音名"></el-checkbox>
+      <el-checkbox label="音阶"></el-checkbox>
+      <el-checkbox label="唱名"></el-checkbox>
+    </el-checkbox-group>
+    <el-radio v-for="item in radioList" v-model="radio" :label="item.label" class="search">{{ item.name }}</el-radio>
+    <div class="cell" v-if="checkList.indexOf('音名') !== -1"><span v-for="i in showNameList">{{ i }}</span></div>
+    <div class="cell" v-if="checkList.indexOf('音阶') !== -1"><span v-for="i in showNumberList">{{ i }}</span></div>
+    <div class="cell" v-if="checkList.indexOf('唱名') !== -1"><span v-for="i in showSayList">{{ i }}</span></div>
+    <el-button @click="handleCLick" class="button">切一下</el-button>
+  </div>
+</body>
+  <!-- import Vue before Element -->
+  <!-- <script src="https://unpkg.com/vue/dist/vue.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+  <!-- import JavaScript -->
+  <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data: function() {
+        return {
+          checkList: ['音名','音阶','唱名'],
+          radioList: [
+            {label: 1, name: '单音'},
+            {label: 2, name: '二连音'},
+            {label: 3, name: '三连音'},
+            {label: 4, name: '四连音'},
+            {label: 5, name: '五连音'},
+          ],
+          radio: 1,
+          str: '',
+          NumberList: [
+            {name: 'C', number: 1, say: 'dao'},
+            {name: 'D', number: 2, say: 'rui'},
+            {name: 'E', number: 3, say: 'mi'},
+            {name: 'F', number: 4, say: 'fa'},
+            {name: 'G', number: 5, say: 'suo'},
+            {name: 'A', number: 6, say: 'la'},
+            {name: 'B', number: 7, say: 'xi'}
+          ],
+          showSayList: [],
+          showNameList: [],
+          showNumberList: [],
+        }
+      },
+      created(){
+
+      },
+      methods: {
+        handleCLick(){
+          this.showSayList = [];
+          this.showNameList = [];
+          this.showNumberList = [];
+          let arr = [];
+          for(let i = this.radio; i > 0; i--) {
+            arr.push(this.getRandomNumber(0, 7));
+          }
+          arr.forEach(v => {
+            this.showSayList.push(this.NumberList[v].say);
+            this.showNameList.push(this.NumberList[v].name);
+            this.showNumberList.push(this.NumberList[v].number);
+          })
+        },
+        getRandomNumber(start, end){
+          return Math.floor(Math.random() * (end - start) + start)
+        }
+      }
+    })
+  </script>
+  <style>
+      #app {
+        width: 500px;
+        height: 500px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        text-align: center;
+        border: 1px solid #c6e2ff;
+      }
+      .search {margin-bottom: 50px;}
+      .button {
+        width: 100px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+      }
+      .cell {
+        height: 52px;
+        font-size: 40px;
+        font-weight: 700;
+        margin-bottom: 50px;
+      }
+      .cell span {
+        display: inline-block;
+        width: 80px;
+      }
+  </style>
+</html>
