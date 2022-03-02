@@ -16,6 +16,8 @@ cat.touchjs = {
         });
         if (!window.localStorage.cat_touchjs_data){
             console.log('if');
+            cat.touchjs.top = 0;
+            cat.touchjs.left = 0;
             callback(0, 0, 1, 0);
         } else {
             console.log('else');
